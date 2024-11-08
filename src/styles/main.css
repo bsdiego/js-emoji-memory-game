@@ -3,8 +3,9 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #fc1e8a;
+  background: linear-gradient(135deg, #8ec5fc 0%, #e0c3fc 100%);
   user-select: none;
+  margin: 0;
 }
 
 .container {
@@ -13,20 +14,21 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
-  background: linear-gradient(
-    325deg,
-    #03001e 0%,
-    #7303c0 30%,
-    #ec38bc 70%,
-    #fdeff9 100%
-  );
+  gap: 20px;
+  background: linear-gradient(325deg, #ffffff 0%, #f0f4fd 50%, #d0e4fd 100%);
   padding: 40px 60px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.timer {
+  font-size: 1.5em;
+  color: #333;
 }
 
 h2 {
-  font-size: 3em;
-  color: #fff;
+  font-size: 2.5em;
+  color: #333;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -34,19 +36,21 @@ h2 {
 .reset {
   padding: 15px 20px;
   width: 100%;
-  color: #000;
-  background-color: #fff;
+  color: #fff;
+  background-color: #6c63ff;
   border: none;
-  font-size: 1.5em;
+  font-size: 1.2em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
   font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.3s;
 }
 
-.reset:focus {
-  color: #ec38bc;
-  background-color: #262809;
+.reset:focus,
+.reset:hover {
+  background-color: #5a54e2;
 }
 
 .game {
@@ -66,29 +70,41 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
-
-  font-size: 3em;
+  background-color: #ffffff;
+  font-size: 2em;
+  color: #333;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transform: rotateY(180deg);
-  transition: 0.25s;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .item::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: #404040;
-  /* opacity: 0.85; */
-  transition: 0.25s;
+  background: #555;
+  border-radius: 10px;
+  transition: transform 0.25s ease;
   transform: rotateY(0deg);
   backface-visibility: hidden;
 }
 
-.item.boxOpen {
+.item.boxOpen,
+.item.boxMatch {
   transform: rotateY(0deg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.boxOpen::after,
-.boxMatch::after {
+.item.boxOpen::after,
+.item.boxMatch::after {
   transform: rotateY(180deg);
+}
+
+.timer {
+  font-size: 2em;
+  color: #000000;
+  margin-top: 20px;
+  letter-spacing: 0.1em;
+  font-weight: bold;
 }
